@@ -6,8 +6,6 @@ apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.8
 
-archivesBaseName = 'simforge-commons'
-
 repositories {
     mavenCentral()
 }
@@ -27,8 +25,6 @@ publishing {
                 groupId = 'net.simforge'
                 artifactId = 'simforge-commons'
                 version = repositoryVersion
-
-                artifacts
 
                 from components.java
             }
