@@ -1,0 +1,3 @@
+ICAO,IATA,Name,City,Latitude,Longitude,Timezone1,Timezone2
+EGLL,LHR,Heathrow,"London, Middlesex, England, United Kingdom",51.4775,-0.461388,UTC+0,DST+3
+LBSF,SOF,"Sofia International (Vrajdebna, Vrazhdebna)","Sofia, Sofia-Grad, Bulgaria",42.695194,23.406167,UTC+2,DST+5
