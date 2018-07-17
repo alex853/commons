@@ -1,7 +1,8 @@
 group 'net.simforge'
-version '1.0-SNAPSHOT'
+version repositoryVersion
 
 apply plugin: 'java'
+apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.8
 
@@ -17,4 +18,20 @@ dependencies {
     compile group: 'javax.mail', name: 'mail', version: '1.4.7'
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+publishing {
+    repositories {
+        publications {
+            maven(MavenPublication) {
+                groupId = 'net.simforge'
+                artifactId = 'simforge-commons'
+                version = repositoryVersion
+
+                artifacts
+
+                from components.java
+            }
+        }
+    }
 }
