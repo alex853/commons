@@ -20,14 +20,18 @@ dependencies {
 
 publishing {
     repositories {
-        publications {
-            maven(MavenPublication) {
-                groupId = 'net.simforge'
-                artifactId = 'simforge-commons'
-                version = repositoryVersion
+        maven {
+            url System.getenv('SIMFORGE_REPO_WRITE_URL')
+        }
+    }
 
-                from components.java
-            }
+    publications {
+        maven(MavenPublication) {
+            groupId = 'net.simforge'
+            artifactId = 'simforge-commons'
+            version = repositoryVersion
+
+            from components.java
         }
     }
 }
