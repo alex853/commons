@@ -5,7 +5,11 @@ import java.time.DayOfWeek;
 public class Weekdays {
     private boolean[] days = new boolean[7];
 
-    public Weekdays(boolean mon, boolean tue, boolean wen, boolean thu, boolean fri, boolean sat, boolean sun) {
+    private Weekdays(Weekdays src) {
+        System.arraycopy(src.days, 0, days, 0, 7);
+    }
+
+    private Weekdays(boolean mon, boolean tue, boolean wen, boolean thu, boolean fri, boolean sat, boolean sun) {
         days[0] = mon;
         days[1] = tue;
         days[2] = wen;
@@ -27,6 +31,10 @@ public class Weekdays {
         return new Weekdays(p(s, 0), p(s, 1), p(s, 2), p(s, 3), p(s, 4), p(s, 5), p(s, 6));
     }
 
+    public static Weekdays wholeWeek() {
+        return new Weekdays(true, true, true, true, true, true, true);
+    }
+
     private static boolean p(String s, int day) {
         char c = s.charAt(day);
         if (c == '_') {
@@ -44,5 +52,15 @@ public class Weekdays {
 
     public boolean isOn(DayOfWeek dayOfWeek) {
         return isOn(dayOfWeek.getValue());
+    }
+
+    public Weekdays off(int dayOfWeek) {
+        Weekdays result = new Weekdays(this);
+        result.days[dayOfWeek - 1] = false;
+        return result;
+    }
+
+    public Weekdays off(DayOfWeek dayOfWeek) {
+        return off(dayOfWeek.getValue());
     }
 }
