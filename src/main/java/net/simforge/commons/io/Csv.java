@@ -33,11 +33,14 @@ public class Csv {
         Csv csvFile = new Csv();
         csvFile.useHeaders = useHeaders;
 
-        String[] strings = content.split("\r\n");
+        String[] strings = content.split("\n");
 
         //noinspection ForLoopReplaceableByForEach
         for (int i = 0; i < strings.length; i++) {
             String string = strings[i];
+            if (string.endsWith("\r")) {
+                string = string.substring(0, string.length() - 1);
+            }
             String[] values = csvFile.splitRow(string);
             csvFile.rows.add(values);
         }
