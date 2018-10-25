@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
+@Deprecated
 public class RunnerMT {
     private static Logger log;
 
