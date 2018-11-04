@@ -3,9 +3,11 @@ package net.simforge.commons.misc;
 import org.junit.Test;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import static net.simforge.commons.misc.JavaTime.hhmmToDuration;
+import static net.simforge.commons.misc.JavaTime.hoursBetween;
 import static net.simforge.commons.misc.JavaTime.toHhmm;
 import static org.junit.Assert.assertEquals;
 
@@ -55,5 +57,13 @@ public class JavaTimeTest {
         assertEquals("02:30", hhmm);
         Duration duration = JavaTime.hhmmToDuration(hhmm);
         assertEquals(Duration.ofHours(2).plusMinutes(30), duration);
+    }
+
+    @Test
+    public void testHoursBetween() {
+        assertEquals(0.25, hoursBetween(LocalDateTime.of(2018, 1, 1, 0, 15), LocalDateTime.of(2018, 1, 1, 0, 30)), 0.001);
+        assertEquals(24.25, hoursBetween(LocalDateTime.of(2018, 1, 1, 0, 15), LocalDateTime.of(2018, 1, 2, 0, 30)), 0.001);
+
+        assertEquals(-0.25, hoursBetween(LocalDateTime.of(2018, 1, 1, 0, 30), LocalDateTime.of(2018, 1, 1, 0, 15)), 0.001);
     }
 }

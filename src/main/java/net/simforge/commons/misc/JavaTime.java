@@ -51,4 +51,9 @@ public class JavaTime {
     public static LocalTime hhmmToLocalTime(String time) {
         return LocalTime.parse(time);
     }
+
+    public static double hoursBetween(LocalDateTime from, LocalDateTime to) {
+        Duration duration = Duration.between(from, to);
+        return duration.getSeconds() / 3600.0;
+    }
 }
