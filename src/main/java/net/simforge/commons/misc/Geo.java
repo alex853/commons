@@ -1,5 +1,7 @@
 package net.simforge.commons.misc;
 
+import java.util.Locale;
+
 /**
  * All distances are measured in nautical miles.
  * All bearings are measured in degrees.
@@ -116,6 +118,14 @@ public class Geo {
             double latDelta = coords.getLat() - lat;
             double lonDelta = coords.getLon() - lon;
             return Math.abs(latDelta) <= maxDelta && Math.abs(lonDelta) <= maxDelta;
+        }
+
+        @Override
+        public String toString() {
+            return "Coords{" +
+                    "lat=" + String.format(Locale.US,"%.2f", lat) +
+                    ", lon=" + String.format(Locale.US,"%.2f", lon) +
+                    '}';
         }
     }
 }
