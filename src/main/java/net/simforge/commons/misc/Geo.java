@@ -128,4 +128,8 @@ public class Geo {
                     '}';
         }
     }
+
+    public static Coords coords(double lat, double lon) {
+        return new Coords(lat, lon);
+    }
 }

@@ -75,4 +75,10 @@ public class TestGeo extends TestCase {
 
         assertTrue(delta < 0.1);
     }
+
+    public void testCoordsMethod() {
+        Geo.Coords coords = Geo.coords(1, 2);
+        assertEquals(1.0, coords.getLat(), 0.001);
+        assertEquals(2.0, coords.getLon(), 0.001);
+    }
 }
