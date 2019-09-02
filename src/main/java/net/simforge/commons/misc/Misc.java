@@ -65,4 +65,12 @@ public class Misc {
             return defaultValue;
         }
     }
+
+    public static int random(int from, int to) {
+        if (from > to) {
+            throw new IllegalArgumentException("found illegal range for int-to-int random");
+        }
+        return from + (int) ((to - from + 1) * Math.random());
+    }
+
 }
