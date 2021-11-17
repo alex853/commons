@@ -8,7 +8,7 @@ public class BMC implements Closeable {
     private BMC() {}
 
     public static BMC start(String point) {
-        BM.start();
+        BM.start(point);
         return new BMC();
     }
 
