@@ -11,7 +11,7 @@ import java.util.TreeMap;
 import java.text.DecimalFormat;
 
 public class BM {
-    private static boolean bmEnabled = Boolean.valueOf(Settings.get("BMEnabled"));
+    private static final boolean bmEnabled = Boolean.parseBoolean(Settings.get("BMEnabled"));
 
     private static final ThreadLocal<BMContext> bmContext = new ThreadLocal<>();
 
