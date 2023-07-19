@@ -81,4 +81,28 @@ public class TestGeo extends TestCase {
         assertEquals(1.0, coords.getLat(), 0.001);
         assertEquals(2.0, coords.getLon(), 0.001);
     }
+
+    public void testDegreeDifference_sameCoords_expectZero() {
+        Geo.Coords coords = Geo.coords(10, 20);
+        assertEquals(0.0, Geo.degreeDifference(coords, coords), 0.001);
+    }
+
+    public void testDegreeDifference_diffCoords_expectNonZero() {
+        Geo.Coords coords1 = Geo.coords(10, 20);
+        Geo.Coords coords2 = Geo.coords(11, 21);
+        assertEquals(2.0, Geo.degreeDifference(coords1, coords2), 0.001);
+    }
+
+    public void testDegreeDifference_diffCoords_closerCoordsShouldHaveLessDifference() {
+        Geo.Coords coords1 = Geo.coords(10, 20);
+        Geo.Coords coords2 = Geo.coords(11, 21);
+        Geo.Coords coords3 = Geo.coords(12, 22);
+        assertTrue(Geo.degreeDifference(coords1, coords2) < Geo.degreeDifference(coords1, coords3));
+    }
+
+    public void testDegreeDifference_longitudesOnDiffSidesOfDateChangeLine_expectCorrectBehaviour() {
+        Geo.Coords coords1 = Geo.coords(10, 179);
+        Geo.Coords coords2 = Geo.coords(10, -179);
+        assertEquals(2.0, Geo.degreeDifference(coords1, coords2), 0.001);
+    }
 }

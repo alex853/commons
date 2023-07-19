@@ -9,10 +9,9 @@ import java.util.Locale;
  * See also http://movable-type.co.uk/scripts/latlong.html
  */
 public class Geo {
-    private static double KMtoNM_coeff = 1.852;
-
-    private static double R_earth_KM = 6371;
-    private static double R_earth_NM = R_earth_KM / KMtoNM_coeff;
+    private static final double KMtoNM_coeff = 1.852;
+    private static final double R_earth_KM = 6371;
+    private static final double R_earth_NM = R_earth_KM / KMtoNM_coeff;
 
     public static double distance(Geo.Coords p1, Geo.Coords p2) {
         double lat1 = Math.toRadians(p1.lat);
@@ -47,6 +46,15 @@ public class Geo {
         double distance = alpha * R_earth_NM;
 
         return distance;
+    }
+
+    public static double degreeDifference(Geo.Coords p1, Geo.Coords p2) {
+        double latDiff = Math.abs(p1.lat - p2.lat);
+        double lonDiff = Math.abs(p1.lon - p2.lon);
+        if (lonDiff > 180) {
+            lonDiff = 360 - lonDiff;
+        }
+        return latDiff + lonDiff;
     }
 
     public static double bearing(Geo.Coords p1, Geo.Coords p2) {
@@ -97,8 +105,8 @@ public class Geo {
     }
 
     public static class Coords {
-        private double lat;
-        private double lon;
+        private final double lat;
+        private final double lon;
 
         public Coords(double lat, double lon) {
             this.lat = lat;
